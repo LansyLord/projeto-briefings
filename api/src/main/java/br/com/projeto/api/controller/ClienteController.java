@@ -29,7 +29,7 @@ public class ClienteController {
     private ClienteService service;
 
     @PostMapping("/api/cliente")
-    public Cliente createCliente(@Valid @RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> createCliente(@Valid @RequestBody Cliente cliente){
         return service.register(cliente);
     }
 

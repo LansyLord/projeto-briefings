@@ -19,8 +19,8 @@ public class ClienteService {
     @Autowired
     private ClienteRepository acao;
 
-    public Cliente register(Cliente c){
-        return acao.save(c);
+    public ResponseEntity<Cliente> register(Cliente c){
+        return new ResponseEntity<>(acao.save(c), HttpStatus.CREATED);
     }
 
     public ResponseEntity<?> editCliente(Cliente c)throws ClienteNotFoundException{

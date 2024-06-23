@@ -41,7 +41,7 @@ public class BriefingServiceTest {
     }
 
     @Test
-    public void testRegisterClienteNotFound(){
+    public void testRegisterBriefingClienteNotFound(){
         Briefing briefing = new Briefing();
         Cliente cliente = new Cliente();
 
@@ -56,7 +56,7 @@ public class BriefingServiceTest {
 
 
     @Test
-    public void testRegisterSuccess(){
+    public void testRegisterBriefingSuccess(){
         Briefing briefing = new Briefing();
         Cliente cliente = new Cliente();
         cliente.setId(1L);
