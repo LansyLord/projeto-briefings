@@ -38,7 +38,7 @@ public class BriefingController {
 
     @PutMapping("/api/briefing")
     public ResponseEntity<BriefingDTO> updateBriefing(@Valid @RequestBody Briefing briefing) throws ClienteNotFoundException, InvalidBriefingStatusException{
-        BriefingDTO updatedBriefing = BriefingDTO.from(_briefingService.register(briefing));
+        BriefingDTO updatedBriefing = BriefingDTO.from(_briefingService.update(briefing));
         return ResponseEntity.ok(updatedBriefing);
     }
 

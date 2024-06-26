@@ -1,1 +1,43 @@
-<h1>Aprendendo Angular</h1>
+<form>
+  <img src="assets/cliente.png">
+
+  <div class="form-group">
+    <select class="form-control" id="exampleFormControlSelect1" name="nomeCliente" [(ngModel)] = briefing.clienteId>
+      <option disabled selected>Selecione um Cliente</option>
+      <option *ngFor="let c of clientes" [value]="c.id">{{ c.name }}</option>
+    </select>
+  </div>
+
+  <input type="text" placeholder="Serviço" class="form-control" name="servico" [(ngModel)] = briefing.task>
+  <input type="text" placeholder="Descrição" class="form-control" name="descricao" [(ngModel)] = briefing.description>
+
+
+  <input type="button" value="Cadastrar" *ngIf="btnCadastro"   class="btn btn-primary" (click) ="registrarBriefing()">
+  <input type="button" value="Alterar"   *ngIf="!btnCadastro"  class="btn btn-warning">
+  <input type="button" value="Remover"   *ngIf="!btnCadastro"  class="btn btn-danger">
+  <input type="button" value="Cancelar"  *ngIf="!btnCadastro"  class="btn btn-secondary">
+</form>
+<h1>{{briefing.clienteId| json}}</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>Serviço</th>
+      <th>Data</th>
+      <th>Estado</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let b of briefings; index as i">
+      <td>{{i+1}}</td>
+      <td>{{b.clienteId}}</td>
+      <td>{{b.task}}</td>
+      <td>{{b.date}}</td>
+      <td>{{b.status}}</td>
+      <td><button class="btn btn-success">Selecionar</button></td>
+    </tr>
+  </tbody>
+</table>
