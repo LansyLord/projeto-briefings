@@ -1,2 +1,2 @@
 # projeto-briefings
-Um CRUD web gestor de briefings utilizando Spring-Boot
+Um CRUD web gestor de briefings utilizando Spring-Boot, Angular e PostgreSQL
