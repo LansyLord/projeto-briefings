@@ -1,8 +1,12 @@
+
 <form>
-  <img src="assets/cliente.png">
+  <nav>
+    <h2>Gestor de Briefings</h2>
+  </nav>
+  <img src="assets/briefingIcon.png">
 
   <div class="form-group">
-    <label for="clienteSelect">Cadastro de Briefing</label>
+    <label for="clienteSelect"><h3>Cadastro de Briefing</h3></label>
     <select class="form-control" id="clienteSelect" [(ngModel)]="briefing.cliente" name="cliente">
       <option disabled [ngValue]="null" selected>Selecione um Cliente</option>
       <!-- Mostrar apenas o cliente selecionado -->
