@@ -24,4 +24,13 @@ export class BriefingService {
       return this.http.post<Briefing>(this.url, briefing);
     }
 
+    //Método para editar briefings
+    editar(briefing:Briefing):Observable<Briefing>{
+      return this.http.put<Briefing>(this.url, briefing);
+    }
+
+    //Método para remover briefings
+    remover(id:number):Observable<void>{
+      return this.http.delete<void>(this.url + "/" + id);
+    }
 }

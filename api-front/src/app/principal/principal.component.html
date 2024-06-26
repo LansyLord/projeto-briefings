@@ -2,23 +2,26 @@
   <img src="assets/cliente.png">
 
   <div class="form-group">
-    <select class="form-control" id="exampleFormControlSelect1" name="nomeCliente" [(ngModel)] = briefing.clienteId>
-      <option disabled selected>Selecione um Cliente</option>
-      <option *ngFor="let c of clientes" [value]="c.id">{{ c.name }}</option>
+    <label for="clienteSelect">Cadastro de Briefing</label>
+    <select class="form-control" id="clienteSelect" [(ngModel)]="briefing.cliente" name="cliente">
+      <option disabled [ngValue]="null" selected>Selecione um Cliente</option>
+      <!-- Mostrar apenas o cliente selecionado -->
+      <option *ngIf="briefing.cliente" [ngValue]="briefing.cliente">{{ briefing.cliente.name }}</option>
+      <!-- Usar método para obter clientes filtrados -->
+      <option *ngFor="let c of getClientesFiltrados()" [ngValue]="c">{{ c.name }}</option>
     </select>
   </div>
 
-  <input type="text" placeholder="Serviço" class="form-control" name="servico" [(ngModel)] = briefing.task>
-  <input type="text" placeholder="Descrição" class="form-control" name="descricao" [(ngModel)] = briefing.description>
+  <input type="text" placeholder="Serviço" class="form-control" name="servico" [(ngModel)]="briefing.task">
+  <input type="text" placeholder="Descrição" class="form-control" name="descricao" [(ngModel)]="briefing.description">
 
 
-  <input type="button" value="Cadastrar" *ngIf="btnCadastro"   class="btn btn-primary" (click) ="registrarBriefing()">
-  <input type="button" value="Alterar"   *ngIf="!btnCadastro"  class="btn btn-warning">
-  <input type="button" value="Remover"   *ngIf="!btnCadastro"  class="btn btn-danger">
-  <input type="button" value="Cancelar"  *ngIf="!btnCadastro"  class="btn btn-secondary">
+  <input type="button" value="Cadastrar" *ngIf="btnCadastro"   class="btn btn-primary" (click)="registrarBriefing()" data-toggle="tooltip" data-placement="bottom" title="Cadastre uma briefing">
+  <input type="button" value="Salvar"   *ngIf="!btnCadastro"  class="btn btn-success" (click)="editarBriefing()">
+  <input type="button" value="Cancelar"  *ngIf="!btnCadastro"  class="btn btn-secondary" (click)="cancelar()">
 </form>
-<h1>{{briefing.clienteId| json}}</h1>
-<table class="table">
+
+<table class="table" *ngIf="tabela">
   <thead>
     <tr>
       <th>#</th>
@@ -26,18 +29,20 @@
       <th>Serviço</th>
       <th>Data</th>
       <th>Estado</th>
-      <th>Selecionar</th>
+      <th>Ações</th>
     </tr>
   </thead>
-
   <tbody>
     <tr *ngFor="let b of briefings; index as i">
-      <td>{{i+1}}</td>
-      <td>{{b.clienteId}}</td>
-      <td>{{b.task}}</td>
-      <td>{{b.date}}</td>
-      <td>{{b.status}}</td>
-      <td><button class="btn btn-success">Selecionar</button></td>
+      <td>{{ i + 1 }}</td>
+      <td>{{ b.clienteName }}</td>
+      <td>{{ b.task }}</td>
+      <td>{{ b.date }}</td>
+      <td>{{ b.status }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="selecionarBriefing(i)">Editar</button>
+        <button class="btn btn-danger" (click)="removerBriefing(i)">Apagar</button>
+      </td>
     </tr>
   </tbody>
 </table>
