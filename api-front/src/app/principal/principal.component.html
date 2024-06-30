@@ -31,6 +31,7 @@
       <th>#</th>
       <th>Cliente</th>
       <th>Serviço</th>
+      <th>Descrição</th>
       <th>Data</th>
       <th>Estado</th>
       <th>Ações</th>
@@ -41,11 +42,13 @@
       <td>{{ i + 1 }}</td>
       <td>{{ b.clienteName }}</td>
       <td>{{ b.task }}</td>
+      <td>{{ b.description }}</td>
       <td>{{ b.date }}</td>
       <td>{{ b.status }}</td>
       <td>
         <button class="btn btn-warning" (click)="selecionarBriefing(i)">Editar</button>
-        <button class="btn btn-danger" (click)="removerBriefing(i)">Apagar</button>
+        <button class="btn btn-danger" (click)="removerBriefing(i)" >Apagar</button>
+        <button class="btn btn-info" (click)="mudarEstadoBriefing(i)">Estado</button>
       </td>
     </tr>
   </tbody>
