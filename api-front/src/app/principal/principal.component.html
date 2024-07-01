@@ -6,7 +6,8 @@
   <img src="assets/briefingIcon.png">
 
   <div class="form-group">
-    <label for="clienteSelect"><h3>Cadastro de Briefing</h3></label>
+    <label for="clienteSelect" *ngIf="tituloCadastro"><h3>Cadastro de Briefing</h3></label>
+    <label for="clienteSelect" *ngIf="tituloEdicao"><h3>Edição de Briefing</h3></label>
     <select class="form-control" id="clienteSelect" [(ngModel)]="briefing.cliente" name="cliente">
       <option disabled [ngValue]="null" selected>Selecione um Cliente</option>
       <!-- Mostrar apenas o cliente selecionado -->
@@ -39,7 +40,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let b of briefings; index as i">
-      <td>{{ i + 1 }}</td>
+      <td>{{ b.id }}</td>
       <td>{{ b.clienteName }}</td>
       <td>{{ b.task }}</td>
       <td>{{ b.description }}</td>

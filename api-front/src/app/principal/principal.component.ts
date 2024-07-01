@@ -17,6 +17,12 @@ export class PrincipalComponent {
   // Variável para visibilidade da tabela
   tabela: boolean = true;
 
+  // Variável para visibilidade do título do formulário de cadastro
+  tituloCadastro: boolean = true;
+
+  // Variável para visibilidade do título do formulário de edição
+  tituloEdicao: boolean = false;
+
   briefing = new Briefing();
 
   // JSON de Briefings
@@ -64,6 +70,12 @@ export class PrincipalComponent {
 
         this.briefings[posicao] = retorno;
 
+        // Variável para visibilidade do título do formulário de cadastro
+        this.tituloCadastro = true;
+
+        // Variável para visibilidade do título do formulário de edição
+        this.tituloEdicao= false;
+
         // Limpar formulário
         this.briefing = new Briefing();
 
@@ -110,6 +122,12 @@ export class PrincipalComponent {
 
     const clienteEncontrado = this.clientes.find(c => c.name === this.briefing.clienteName);
     this.briefing.cliente = clienteEncontrado ? clienteEncontrado : new Cliente(); // ou qualquer valor padrão do tipo Cliente
+
+    // Variável para visibilidade do título do formulário de cadastro
+    this.tituloCadastro = false;
+
+    // Variável para visibilidade do título do formulário de edição
+    this.tituloEdicao= true;
 
     this.btnCadastro = false;
 
