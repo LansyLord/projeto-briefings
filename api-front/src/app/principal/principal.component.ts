@@ -11,6 +11,9 @@ import { ClienteService } from '../servico/cliente.service';
 })
 export class PrincipalComponent {
 
+  // Variável para visibilidade do formulário de Briefings
+  formBriefings: boolean = false;
+
   // Variável para visibilidade dos botões
   btnCadastro: boolean = true;
 
