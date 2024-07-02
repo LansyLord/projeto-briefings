@@ -1,8 +1,8 @@
-import { Briefing } from './../models/Briefing';
+import { Briefing } from '../../models/Briefing';
 import { Component } from '@angular/core';
-import { BriefingService } from '../servico/briefing.service';
-import { Cliente } from '../models/Cliente';
-import { ClienteService } from '../servico/cliente.service';
+import { BriefingService } from '../../servico/briefing.service';
+import { Cliente } from '../../models/Cliente';
+import { ClienteService } from '../../servico/cliente.service';
 
 @Component({
   selector: 'app-principal',
@@ -11,14 +11,21 @@ import { ClienteService } from '../servico/cliente.service';
 })
 export class PrincipalComponent {
 
+  formsButtons: boolean = true;
+
   // Variável para visibilidade do formulário de Briefings
   formBriefings: boolean = false;
+
+  // Variável para visibilidade do formulário de Clientes
+  formClientes: boolean = false;
+
+  btnVoltar: boolean = false;
 
   // Variável para visibilidade dos botões
   btnCadastro: boolean = true;
 
   // Variável para visibilidade da tabela
-  tabela: boolean = true;
+  tabelaBriefings: boolean = false;
 
   // Variável para visibilidade do título do formulário de cadastro
   tituloCadastro: boolean = true;
@@ -38,6 +45,44 @@ export class PrincipalComponent {
   constructor(
     private servicoBriefing: BriefingService,
     private servicoCliente: ClienteService) { }
+
+
+
+  voltar(): void{
+    this.formsButtons = true;
+
+    this.formBriefings = false;
+
+    this.formClientes = false;
+
+    this.btnVoltar = false;
+
+    this.btnCadastro = true;
+
+    this.tabelaBriefings = false;
+
+    this.tituloCadastro = true;
+
+    this.tituloEdicao = false;
+  }
+
+  // Método para exbir formulário de briefings
+  exibeFormBriefings(): void{
+    this.formClientes = false;
+    this.formBriefings = true;
+    this.formsButtons = false;
+    this.btnVoltar = true;
+    this.tabelaBriefings = true;
+  }
+
+  // Método para exbir formulário de clientes
+  exibeFormClientes(): void{
+    this.formBriefings = false;
+    this.formClientes = true;
+    this.formsButtons = false;
+    this.btnVoltar = true;
+    this.tabelaBriefings = false;
+  }
 
   // Método de seleção de briefings
   selecionarBriefings(): void {
@@ -84,7 +129,7 @@ export class PrincipalComponent {
 
         this.btnCadastro = true;
 
-        this.tabela = true;
+        this.tabelaBriefings = true;
 
         alert("As alterações da briefing foram salvas");
 
@@ -134,7 +179,7 @@ export class PrincipalComponent {
 
     this.btnCadastro = false;
 
-    this.tabela = false;
+    this.tabelaBriefings = false;
 
   }
 
@@ -168,13 +213,26 @@ export class PrincipalComponent {
   }
 
   // Método para cancelar edição
-  cancelar(): void {
+  cancelarEdicao(): void {
 
     this.briefing = new Briefing();
 
     this.btnCadastro = true;
 
-    this.tabela = true;
+    this.tabelaBriefings = true;
+
+    this.selecionarBriefings();
+
+  }
+
+  // Método para cancelar edição
+  cancelarCadCliente(): void {
+
+    this.briefing = new Briefing();
+
+    this.btnCadastro = true;
+
+    this.tabelaBriefings = true;
 
     this.selecionarBriefings();
 

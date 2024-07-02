@@ -22,12 +22,23 @@
 
   <input type="button" value="Cadastrar" *ngIf="btnCadastro"   class="btn btn-primary" (click)="registrarBriefing()" data-toggle="tooltip" data-placement="bottom" title="Cadastre uma briefing">
   <input type="button" value="Salvar"   *ngIf="!btnCadastro"  class="btn btn-success" (click)="editarBriefing()">
-  <input type="button" value="Cancelar"  *ngIf="!btnCadastro"  class="btn btn-secondary" (click)="cancelar()">
+  <input type="button" value="Cancelar"  *ngIf="!btnCadastro"  class="btn btn-secondary" (click)="cancelarEdicao()">
+  <input type="button" value="Voltar" *ngIf="btnVoltar" class="btn btn-secondary" (click)="voltar()">
 </form>
 
-<button class="btn btn-primary" (click)="">Cadastrar Cliente</button>
 
-<table class="table" *ngIf="tabela">
+  <app-client-form *ngIf="formClientes"></app-client-form>
+
+
+
+
+
+<div class="formsButtons" *ngIf="formsButtons">
+<button class="btn btn-primary" (click)="exibeFormClientes()">Cadastrar Cliente</button>
+<button class="btn btn-primary"  (click)="exibeFormBriefings()">Cadastrar Briefing</button>
+</div>
+
+<table class="table" *ngIf="tabelaBriefings">
   <thead>
     <tr>
       <th>#</th>

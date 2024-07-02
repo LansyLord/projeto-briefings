@@ -1,0 +1,12 @@
+<form>
+  <img src="assets/cliente.png">
+  <h3>Cadastro de Cliente</h3>
+  <input type="text" placeholder="Serviço" class="form-control" name="servico" [(ngModel)]="cliente.name">
+  <input type="text" placeholder="Descrição" class="form-control" name="descricao" [(ngModel)]="cliente.email">
+
+
+  <input type="button" value="Cadastrar" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom"
+    title="Cadastre um cliente">
+  <input type="button" value="Voltar" *ngIf="btnVoltar" (click)="voltar()" class="btn btn-secondary">
+
+</form>
