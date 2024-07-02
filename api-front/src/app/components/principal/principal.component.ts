@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { BriefingService } from '../../servico/briefing.service';
 import { Cliente } from '../../models/Cliente';
 import { ClienteService } from '../../servico/cliente.service';
+import { ClientFormComponent } from '../client-form/client-form.component';
 
 @Component({
   selector: 'app-principal',
@@ -44,7 +45,8 @@ export class PrincipalComponent {
   // Construtor
   constructor(
     private servicoBriefing: BriefingService,
-    private servicoCliente: ClienteService) { }
+    private servicoCliente: ClienteService,
+  ) { }
 
 
 
@@ -82,6 +84,8 @@ export class PrincipalComponent {
     this.formsButtons = false;
     this.btnVoltar = true;
     this.tabelaBriefings = false;
+    this.selecionarClientes();
+    this.selecionarBriefings();
   }
 
   // Método de seleção de briefings

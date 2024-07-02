@@ -1,8 +1,8 @@
 <form>
   <img src="assets/cliente.png">
   <h3>Cadastro de Cliente</h3>
-  <input type="text" placeholder="Serviço" class="form-control" name="servico" [(ngModel)]="cliente.name">
-  <input type="text" placeholder="Descrição" class="form-control" name="descricao" [(ngModel)]="cliente.email">
+  <input type="text" placeholder="Nome" class="form-control" name="servico" [(ngModel)]="cliente.name">
+  <input type="text" placeholder="Email" class="form-control" name="descricao" [(ngModel)]="cliente.email">
 
 
   <input type="button" value="Cadastrar" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom"
@@ -10,3 +10,27 @@
   <input type="button" value="Voltar" *ngIf="btnVoltar" (click)="voltar()" class="btn btn-secondary">
 
 </form>
+
+<table class="table" *ngIf="tabelaClientes">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Qtd. Briefings</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of clientes; index as i">
+      <td>{{ c.id }}</td>
+      <td>{{ c.name }}</td>
+      <td>{{ c.email }}</td>
+      <td>{{ c.countBriefings }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="selecionarCliente(i)">Editar</button>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
