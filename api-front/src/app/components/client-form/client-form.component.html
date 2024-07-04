@@ -1,13 +1,16 @@
 <form>
   <img src="assets/cliente.png">
-  <h3>Cadastro de Cliente</h3>
+  <h3 *ngIf="tituloCadastro">Cadastro de Cliente</h3>
+  <h3 *ngIf="tituloEdicao">Edição de Cliente</h3>
   <input type="text" placeholder="Nome" class="form-control" name="servico" [(ngModel)]="cliente.name">
   <input type="text" placeholder="Email" class="form-control" name="descricao" [(ngModel)]="cliente.email">
 
 
-  <input type="button" value="Cadastrar" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom"
-    title="Cadastre um cliente">
-  <input type="button" value="Voltar" *ngIf="btnVoltar" (click)="voltar()" class="btn btn-secondary">
+  <input type="button" value="Cadastrar" data-toggle="tooltip" (click)="registrarCliente()" data-placement="bottom"
+   title="Cadastre um cliente" class="btn btn-primary" *ngIf="btnCadastro">
+  <input type="button" value="Salvar"   *ngIf="!btnCadastro"  class="btn btn-success" (click)="editarCliente()">
+  <input type="button" value="Cancelar"  *ngIf="!btnCadastro"  class="btn btn-secondary" (click)="cancelarEdicao()">
+  <input type="button" value="Voltar" *ngIf="btnVoltar"(click)="voltar()" class="btn btn-secondary">
 
 </form>
 
@@ -17,7 +20,6 @@
       <th>#</th>
       <th>Nome</th>
       <th>Email</th>
-      <th>Qtd. Briefings</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -26,10 +28,9 @@
       <td>{{ c.id }}</td>
       <td>{{ c.name }}</td>
       <td>{{ c.email }}</td>
-      <td>{{ c.countBriefings }}</td>
       <td>
         <button class="btn btn-warning" (click)="selecionarCliente(i)">Editar</button>
-        
+        <button class="btn btn-danger" (click)="removerCliente(i)">Apagar</button>
       </td>
     </tr>
   </tbody>

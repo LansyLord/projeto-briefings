@@ -185,6 +185,8 @@ export class PrincipalComponent {
 
     this.tabelaBriefings = false;
 
+    this.btnVoltar = false;
+
   }
 
   // Método para mudar o estado da briefing
@@ -225,18 +227,7 @@ export class PrincipalComponent {
 
     this.tabelaBriefings = true;
 
-    this.selecionarBriefings();
-
-  }
-
-  // Método para cancelar edição
-  cancelarCadCliente(): void {
-
-    this.briefing = new Briefing();
-
-    this.btnCadastro = true;
-
-    this.tabelaBriefings = true;
+    this.btnVoltar = true;
 
     this.selecionarBriefings();
 
