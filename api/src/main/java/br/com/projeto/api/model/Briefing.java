@@ -3,6 +3,7 @@ package br.com.projeto.api.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import br.com.projeto.api.enums.BriefingStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;

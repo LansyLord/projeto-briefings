@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.projeto.api.model.Briefing;
-import br.com.projeto.api.model.BriefingStatus;
+import br.com.projeto.api.enums.BriefingStatus;
 import lombok.Builder;
 
 @Builder

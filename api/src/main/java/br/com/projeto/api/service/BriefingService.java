@@ -15,7 +15,7 @@ import br.com.projeto.api.exceptions.BriefingNotFoundException;
 import br.com.projeto.api.exceptions.InvalidBriefingStatusException;
 import br.com.projeto.api.exceptions.ClienteNotFoundException;
 import br.com.projeto.api.model.Briefing;
-import br.com.projeto.api.model.BriefingStatus;
+import br.com.projeto.api.enums.BriefingStatus;
 import br.com.projeto.api.model.Cliente;
 import br.com.projeto.api.repository.BriefingRepository;
 import br.com.projeto.api.repository.ClienteRepository;

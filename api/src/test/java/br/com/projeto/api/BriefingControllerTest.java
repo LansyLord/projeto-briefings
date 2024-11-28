@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.projeto.api.controller.BriefingController;
 import br.com.projeto.api.exceptions.BriefingNotFoundException;
 import br.com.projeto.api.model.Briefing;
-import br.com.projeto.api.model.BriefingStatus;
+import br.com.projeto.api.enums.BriefingStatus;
 import br.com.projeto.api.model.Cliente;
 import br.com.projeto.api.service.BriefingService;
 
