@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { Cliente } from 'src/app/models/Cliente';
-import { PrincipalComponent } from '../principal/principal.component';
-import { Briefing } from 'src/app/models/Briefing';
-import { ClienteService } from 'src/app/servico/cliente.service';
-import { BriefingService } from 'src/app/servico/briefing.service';
+import { Component, ViewChild } from '@angular/core';
+import { PrincipalComponent } from '../principal.component';
+import { Cliente } from 'src/app/core/models/Cliente';
+import { Briefing } from 'src/app/core/models/Briefing';
+import { BriefingService } from 'src/app/core/services/briefing.service';
+import { ClienteService } from 'src/app/core/services/cliente.service';
+import { NotificationComponent } from 'src/app/shared/notification/notification.component';
+
 
 @Component({
   selector: 'app-client-form',
@@ -11,6 +13,8 @@ import { BriefingService } from 'src/app/servico/briefing.service';
   styleUrls: ['./client-form.component.scss']
 })
 export class ClientFormComponent {
+
+  @ViewChild('notification') notification!: NotificationComponent;
 
   tituloCadastro: boolean = true;
 
@@ -55,11 +59,14 @@ export class ClientFormComponent {
     this.tabelaClientes = false;
     this.btnCadastro = false;
     this.btnVoltar = false;
+    this.tituloEdicao = true;
+    this.tituloCadastro = false;
+
   }
 
   // Método de registro de clientes
   registrarCliente(): void {
-    if(!this.cliente.email.includes("@") && (!this.cliente.email.includes("."))){
+    if (!this.cliente.email.includes("@") && (!this.cliente.email.includes("."))) {
       alert("O email inserido é inválido!");
       this.cliente.email = "";
       return;
@@ -74,7 +81,8 @@ export class ClientFormComponent {
         this.cliente = new Cliente();
 
         // Mensagem
-        alert("Cliente cadastrado com sucesso");
+        this.notification.showNotification('Cliente cadastrado com sucesso!', 'success');
+
 
       });
   }
@@ -103,44 +111,54 @@ export class ClientFormComponent {
 
         this.tabelaClientes = true;
 
-        alert("As alterações da briefing foram salvas");
+        this.btnVoltar = true;
+
+        this.selecionarClientes();
+
+        this.notification.showNotification('As alterações do cliente foram salvas', 'success');
+
+
 
       });
   }
 
-    // Método para cancelar edição
-    cancelarEdicao(): void {
+  // Método para cancelar edição
+  cancelarEdicao(): void {
 
-      this.cliente = new Cliente();
+    this.cliente = new Cliente();
 
-      this.btnCadastro = true;
+    this.btnCadastro = true;
 
-      this.tabelaClientes = true;
+    this.tabelaClientes = true;
 
-      this.btnVoltar = true;
+    this.btnVoltar = true;
 
-      this.selecionarClientes();
+    this.selecionarClientes();
 
-    }
+  }
 
-     // Método para remoção de briefings
+  // Método para remoção de briefings
   removerCliente(index: number): void {
 
     this.cliente = this.clientes[index]
 
     const confirmation = confirm("Tem certeza que deseja apagar este cliente?");
 
-    if(confirmation){
+    if (confirmation) {
       this.servicoCliente.remover(this.cliente.id)
-      .subscribe(retorno => {
+        .subscribe(retorno => {
 
-        // Remover briefing do vetor
-        this.clientes.splice(this.cliente.id, 1);
+          // Remover briefing do vetor
+          this.clientes.splice(this.cliente.id, 1);
 
-        this.selecionarClientes();
-      });
+          this.notification.showNotification('Cliente apagado com sucesso', 'success');
+
+          this.selecionarClientes();
+        });
     }
     // Limpar formulário
     this.cliente = new Cliente();
+
+    this.btnVoltar = true;
   }
 }

@@ -1,0 +1,98 @@
+img {
+  width: 150px;
+  margin-bottom: 30px;
+}
+
+.title-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  transition: margin-top 0.3s ease;
+}
+
+.title-group.no-margin {
+  margin-top: 0;
+}
+
+.title-group:not(.no-margin) {
+  margin-top: 300px;
+}
+
+form {
+  width: 500px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+div[class="form-group"] {
+  margin-bottom: 10px;
+}
+
+input[type="button"] {
+  margin-right: 10px;
+}
+
+.title-group button {
+  margin-right: 10px;
+}
+
+.table {
+  width: auto;
+  width: 1100px;
+  max-width: 1500px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.table thead th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.table tbody td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.table tbody tr:hover {
+  background-color: #e6f7ff;
+}
+
+.table-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  height: 30px;
+}
+
+.table-buttons .btn-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.table-buttons .btn-icon:hover {
+  transform: scale(1.1);
+}

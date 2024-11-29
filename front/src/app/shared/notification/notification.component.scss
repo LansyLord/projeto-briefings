@@ -1,0 +1,50 @@
+.alert {
+    position: fixed;
+    top: -100px;
+    /* Começa fora da tela */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    width: auto;
+    max-width: 90%;
+    opacity: 0;
+    /* Inicia invisível */
+    transition: top 300ms ease-in-out, opacity 300ms ease-in-out;
+    /* Suavidade ao aparecer */
+}
+
+.alert-show {
+    top: 20px;
+    /* Posição final do alerta */
+    opacity: 1;
+    /* Visível */
+}
+
+.alert-primary {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.alert-success {
+    background-color: #198754;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.alert-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn-close {
+    color: white;
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}

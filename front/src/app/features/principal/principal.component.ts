@@ -1,16 +1,34 @@
-import { Briefing } from '../../models/Briefing';
-import { Component } from '@angular/core';
-import { BriefingService } from '../../servico/briefing.service';
-import { Cliente } from '../../models/Cliente';
-import { ClienteService } from '../../servico/cliente.service';
-import { ClientFormComponent } from '../client-form/client-form.component';
+import { Component, ViewChild } from '@angular/core';
+
+import { ClienteService } from 'src/app/core/services/cliente.service';
+import { Briefing } from 'src/app/core/models/Briefing';
+import { Cliente } from 'src/app/core/models/Cliente';
+import { BriefingService } from 'src/app/core/services/briefing.service';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { NotificationComponent } from 'src/app/shared/notification/notification.component';
+
+
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.scss']
+  styleUrls: ['./principal.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms ease-in', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
+
+
 export class PrincipalComponent {
+  @ViewChild('notification') notification!: NotificationComponent;
 
   formsButtons: boolean = true;
 
@@ -50,7 +68,7 @@ export class PrincipalComponent {
 
 
 
-  voltar(): void{
+  voltar(): void {
     this.formsButtons = true;
 
     this.formBriefings = false;
@@ -69,16 +87,17 @@ export class PrincipalComponent {
   }
 
   // Método para exbir formulário de briefings
-  exibeFormBriefings(): void{
+  exibeFormBriefings(): void {
     this.formClientes = false;
     this.formBriefings = true;
     this.formsButtons = false;
     this.btnVoltar = true;
     this.tabelaBriefings = true;
+    this.selecionarClientes();
   }
 
   // Método para exbir formulário de clientes
-  exibeFormClientes(): void{
+  exibeFormClientes(): void {
     this.formBriefings = false;
     this.formClientes = true;
     this.formsButtons = false;
@@ -105,7 +124,7 @@ export class PrincipalComponent {
         this.briefing = new Briefing();
 
         // Mensagem
-        alert("Briefing cadastrada com sucesso");
+        this.notification.showNotification('Briefing cadastrada com sucesso!', 'success');
 
       });
   }
@@ -126,7 +145,7 @@ export class PrincipalComponent {
         this.tituloCadastro = true;
 
         // Variável para visibilidade do título do formulário de edição
-        this.tituloEdicao= false;
+        this.tituloEdicao = false;
 
         // Limpar formulário
         this.briefing = new Briefing();
@@ -135,7 +154,9 @@ export class PrincipalComponent {
 
         this.tabelaBriefings = true;
 
-        alert("As alterações da briefing foram salvas");
+        this.btnVoltar = true;
+
+        this.notification.showNotification('As alterações da briefing foram salvas', 'success');
 
       });
   }
@@ -147,15 +168,15 @@ export class PrincipalComponent {
 
     const confirmation = confirm("Tem certeza que deseja apagar esta briefing?");
 
-    if(confirmation){
+    if (confirmation) {
       this.servicoBriefing.remover(this.briefing.id)
-      .subscribe(retorno => {
+        .subscribe(retorno => {
 
-        // Remover briefing do vetor
-        this.briefings.splice(this.briefing.id, 1);
+          // Remover briefing do vetor
+          this.briefings.splice(this.briefing.id, 1);
 
-        this.selecionarBriefings();
-      });
+          this.selecionarBriefings();
+        });
     }
     // Limpar formulário
     this.briefing = new Briefing();
@@ -179,7 +200,7 @@ export class PrincipalComponent {
     this.tituloCadastro = false;
 
     // Variável para visibilidade do título do formulário de edição
-    this.tituloEdicao= true;
+    this.tituloEdicao = true;
 
     this.btnCadastro = false;
 
@@ -213,7 +234,7 @@ export class PrincipalComponent {
 
     // Atualizar a briefing no servidor
     this.servicoBriefing.editar(this.briefing)
-      .subscribe(() => {});
+      .subscribe(() => { });
 
     this.briefing = new Briefing();
   }
